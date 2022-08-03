@@ -3,6 +3,7 @@
 - 🌱 I’m currently cooking my master thesis.
 - 📫 You can contact me via LinkedIn.
 - 🎮 Currently playing : Digimon Survive.
+- :tv: Peaky Blinders
 
 ## 💻 Programming Skills
 - C/C++.
