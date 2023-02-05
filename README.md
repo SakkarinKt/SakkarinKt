@@ -2,8 +2,8 @@
 - 👀 I’m interested in Reinforcement Learning: Model-based, Imitation Learning.
 - 🌱 I’m currently cooking my master thesis.
 - 📫 You can contact me via LinkedIn.
-- 🎮 Playing : Digimon Survive.
-- :tv: Watching : Better Call Saul.
+- 🎮 Playing : Fire Emblem Engage.
+- :tv: Watching : The Last of Us.
 
 ## 💻 Programming Skills
 - C/C++.
