@@ -2,14 +2,14 @@
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { SITE_DESCRIPTION, SITE_TITLE, BASE } from '../consts';
 
 const hero = {
 	role: 'Product-focused Software Engineer',
 	heading: `Hi, I'm ${SITE_TITLE}`,
 	tagline:
 		'Turning reinforcement learning and applied math into production-ready features.',
-	ctaPrimary: { label: 'View Projects', href: '#projects' },
+	ctaPrimary: { label: 'View Projects(WIP)', href: '#projects' },
 	ctaSecondary: { label: 'Download Résumé', href: 'https://drive.google.com/file/d/1lFlbKTdTfKJghRwftikbtqdKkfGiwAYG/view?usp=drive_link' },
 };
 
@@ -160,7 +160,7 @@ const contact = {
 						Recent highlights include shipping a Nuxt app to cloud hosting, deploying a microservice on Google Cloud Run, and mentoring a multi-disciplinary squad through their
 						first launch.
 					</p>
-					<a class="about__link" href="/about/">Read the full story →</a>
+					<a class="about__link" href={`${BASE}about/`}>Read the full story →</a>
 				</div>
 			</section>
 

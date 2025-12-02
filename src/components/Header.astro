@@ -1,15 +1,15 @@
 ---
-import { SITE_TITLE } from '../consts';
+import { SITE_TITLE, BASE } from '../consts';
 import HeaderLink from './HeaderLink.astro';
 ---
 
 <header>
 	<nav>
-		<h2><a href="/">{SITE_TITLE}</a></h2>
+		<h2><a href={BASE}>{SITE_TITLE}</a></h2>
 		<div class="internal-links">
-			<HeaderLink href="/">Home</HeaderLink>
-			<HeaderLink href="/blog">Blog</HeaderLink>
-			<HeaderLink href="/about">About</HeaderLink>
+			<HeaderLink href={BASE}>Home</HeaderLink>
+			<HeaderLink href={`${BASE}blog/`}>Blog</HeaderLink>
+			<HeaderLink href={`${BASE}about/`}>About</HeaderLink>
 		</div>
 		<div class="social-links">
 			<a href="https://www.linkedin.com/in/sakkarin-krarat-bb6958140" target="_blank">
