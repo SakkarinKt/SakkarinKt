@@ -1,0 +1,282 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+const hero = {
+	title: 'About Me',
+	role: 'Product-focused Software Engineer',
+	intro:
+		"Reinforcement-learning–driven engineer turning research into maintainable, observable products.",
+	availability: 'Currently open to senior AI Engineer and Data Scientist.',
+};
+
+
+const experience = [
+	{
+		period: '2023 — Present',
+		title: 'Software Developer · SystemWeb Technologies',
+		points: [
+			'Develop and implement enterprise financial solutions in Asset and Wealth Management using C# and JavaScript.',
+			'Collaborate with cross-functional teams of 5–10 developers across Thailand and Taiwan to deliver scalable and efficient financial applications.',
+		],
+	},
+	{
+		period: '2020 — 2020',
+		title: 'Data Analyst · Tri Petch IT Solutions',
+		points: [
+			'Designing Machine Learning predictive model for Isuzu Motors’s campaign and managing database and cloud service.',
+			'Collaborated with customer success to close feedback loops and prioritize roadmap.',
+		],
+	},
+];
+
+const education = [
+	{
+		period: '2024',
+		title: 'National Tsing Hua University · Taiwan',
+		points: [
+			'MSc. in Institute of Information Systems and Applications',
+			'Master Thesis: Enhancing Autonomous Driving Using Double Critic and MCTS for Inverse Reinforcement Learning',
+		],
+	},
+	{
+		period: '2017',
+		title: 'Mahidol University · Thailand',
+		points: [
+			'BSc. in Actuarial Sciences ',
+			'Analytics of financial security systems with Mathematics, Statistics, Finance, and Economics',
+		],
+	},
+];
+
+const values = [
+	{ label: 'Integrity first', description: 'Do the right thing—clear communication, honest trade-offs, and privacy/security by design.' },
+	{ label: 'Production-grade quality', description: 'Define “acceptable quality” with measurable criteria: tests, SLOs, code review, and release checklists.' },
+	{ label: 'Client impact', description: 'Start from real problems and outcomes; validate with data and close feedback loops quickly.' },
+];
+
+const beyondWork = [
+	// {
+	// 	title: 'Community',
+	// 	description:
+	// 		'I co-organize a monthly product meetup that helps builders share wins, challenges, and job leads.',
+	// },
+	{
+		title: 'Learning',
+		description: 'Currently exploring edge-native tooling and experimenting with various optimization for RL',
+	},
+	{
+		title: 'Outside the Screen',
+		description: 'Catch me practicing BJJ, testing new recipes, or watching new films.',
+	},
+];
+--- 
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`${SITE_TITLE} · About`} description={`${SITE_DESCRIPTION} — Learn more about the person behind the work.`} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="section hero">
+				<div class="hero__header">
+					<p class="eyebrow">{hero.role}</p>
+					<h1>{hero.title}</h1>
+					<p class="intro">{hero.intro}</p>
+					<p class="availability">{hero.availability}</p>
+				</div>
+			</section>
+
+			<section class="section">
+				<header class="section__header">
+					<h2>Experience Snapshot</h2>
+				</header>
+				<div class="timeline">
+					{experience.map((role) => (
+						<article class="timeline__item">
+							<header>
+								<p class="timeline__period">{role.period}</p>
+								<h3>{role.title}</h3>
+							</header>
+							<ul>
+								{role.points.map((point) => (
+									<li>{point}</li>
+								))}
+							</ul>
+						</article>
+					))}
+				</div>
+			</section>
+
+			<section class="section">
+				<header class="section__header">
+					<h2>Education</h2>
+				</header>
+				<div class="timeline">
+					{education.map((role) => (
+						<article class="timeline__item">
+							<header>
+								<p class="timeline__period">{role.period}</p>
+								<h3>{role.title}</h3>
+							</header>
+							<ul>
+								{role.points.map((point) => (
+									<li>{point}</li>
+								))}
+							</ul>
+						</article>
+					))}
+				</div>
+			</section>
+
+			<section class="section section--muted">
+				<header class="section__header">
+					<h2>Values I Work By</h2>
+				</header>
+				<ul class="values">
+					{values.map((value) => (
+						<li>
+							<h3>{value.label}</h3>
+							<p>{value.description}</p>
+						</li>
+					))}
+				</ul>
+			</section>
+
+			<section class="section">
+				<header class="section__header">
+					<h2>Beyond the Keyboard</h2>
+				</header>
+				<div class="cards">
+					{beyondWork.map((item) => (
+						<article class="card">
+							<h3>{item.title}</h3>
+							<p>{item.description}</p>
+						</article>
+					))}
+				</div>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	main {
+		max-width: 900px;
+		margin: 0 auto;
+		padding: 4rem 1.5rem 6rem;
+		display: flex;
+		flex-direction: column;
+		gap: 4rem;
+	}
+
+	.section {
+		display: grid;
+		gap: 2rem;
+	}
+
+	.section--muted {
+		background: linear-gradient(var(--gray-gradient)) no-repeat;
+		padding: 3rem 2rem;
+		border-radius: 1rem;
+		color: rgb(var(--gray));
+	}
+
+	.section__header {
+		display: grid;
+		gap: 0.75rem;
+	}
+
+	.hero {
+		gap: 1.5rem;
+	}
+
+	.hero__header {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.eyebrow {
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		font-size: 0.85rem;
+		color: rgb(var(--gray));
+	}
+
+	.intro {
+		max-width: 60ch;
+		font-size: 1.1rem;
+		color: rgb(var(--gray-dark));
+	}
+
+	.availability {
+		font-weight: 600;
+		color: rgb(var(--accent));
+	}
+
+	.timeline {
+		display: grid;
+		gap: 2rem;
+	}
+
+	.timeline__item {
+		border-left: 3px solid rgb(var(--accent));
+		padding-left: 1.5rem;
+		display: grid;
+		gap: 1rem;
+	}
+
+	.timeline__period {
+		font-weight: 600;
+		color: rgb(var(--gray));
+	}
+
+	.timeline ul {
+		margin: 0;
+		padding-left: 1.2rem;
+		display: grid;
+		gap: 0.6rem;
+	}
+
+	.values {
+		display: grid;
+		gap: 1.5rem;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.values li {
+		display: grid;
+		gap: 0.5rem;
+	}
+
+	.cards {
+		display: grid;
+		gap: 1.5rem;
+		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+	}
+
+	.card {
+		border: 1px solid rgb(var(--gray-light));
+		border-radius: 1rem;
+		padding: 1.5rem;
+		display: grid;
+		gap: 0.75rem;
+		background: rgba(255, 255, 255, 0.6);
+	}
+
+	@media (max-width: 720px) {
+		main {
+			padding: 3rem 1.25rem 5rem;
+		}
+
+		.section--muted {
+			padding: 2.5rem 1.5rem;
+		}
+	}
+</style>

@@ -1,0 +1,387 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+const hero = {
+	role: 'Product-focused Software Engineer',
+	heading: `Hi, I'm ${SITE_TITLE}`,
+	tagline:
+		'Turning reinforcement learning and applied math into production-ready features.',
+	ctaPrimary: { label: 'View Projects', href: '#projects' },
+	ctaSecondary: { label: 'Download Résumé', href: 'https://drive.google.com/file/d/1lFlbKTdTfKJghRwftikbtqdKkfGiwAYG/view?usp=drive_link' },
+};
+
+const highlights = [
+	{ value: '5+', label: 'Years of Developing' },
+	// { value: '12', label: 'Products Shipped' },
+	// { value: '3x', label: 'Average ROI for Clients' },
+];
+
+// will modify this section later
+const projects = [
+	{
+		title: 'Project Alpha',
+		description: 'Launched a cross-platform productivity app that reached 20k users in its first quarter.',
+		tags: ['Astro', 'TypeScript', 'Design Systems'],
+		link: '#',
+		linkLabel: 'Case Study',
+	},
+	{
+		title: 'Commerce Pulse',
+		description: 'Built an analytics dashboard that visualizes real-time sales metrics for retail brands.',
+		tags: ['React', 'Node.js', 'Data Viz'],
+		link: '#',
+		linkLabel: 'Read More',
+	},
+	{
+		title: 'Nimbus API',
+		description: 'Designed and shipped a developer-first platform that cut integration time from weeks to days.',
+		tags: ['Go', 'GraphQL', 'Cloud'],
+		link: '#',
+		linkLabel: 'View Details',
+	},
+];
+
+const skills = [
+	{
+		category: 'Frontend',
+		items: ['Astro', 'Nuxt.js', 'TypeScript', 'Tailwind CSS'],
+	},
+	{
+		category: 'Backend',
+		items: ['Python', 'C#', 'JavaScript', 'PostgreSQL'],
+	},
+	{
+		category: 'AI / Machine Learning',
+		items: ['Reinforcement Learning', 'Pytorch', 'Policy Optimization'],
+	},
+	{
+		category: 'Infrastructure & DevOps',
+		items: ['Google Cloud Platform', 'Docker', 'Amazon Web Service'],
+	},
+];
+
+const contact = {
+	email: 'sakkarink12@gmail.com',
+	linkedin: 'https://www.linkedin.com/in/sakkarin-krarat-bb6958140',
+	github: 'https://github.com/SakkarinKt',
+	location: 'Taipei, Republic of China(Taiwan)',
+};
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section id="hero" class="section hero">
+				<div class="hero__intro">
+					<p class="hero__role">{hero.role}</p>
+					<h1>{hero.heading}</h1>
+					<p class="hero__tagline">{hero.tagline}</p>
+					<div class="hero__ctas">
+						<a class="btn btn--primary" href={hero.ctaPrimary.href}>{hero.ctaPrimary.label}</a>
+						<a
+							class="btn btn--ghost"
+							href={hero.ctaSecondary.href}
+							target="_blank"
+							rel="noopener noreferrer"
+							>{hero.ctaSecondary.label}</a
+						>
+					</div>
+				</div>
+				<ul class="hero__highlights">
+					{highlights.map((highlight) => (
+						<li>
+							<span class="highlight__value">{highlight.value}</span>
+							<span class="highlight__label">{highlight.label}</span>
+						</li>
+					))}
+				</ul>
+			</section>
+
+			<!-- <section id="projects" class="section">
+				<header class="section__header">
+					<h2>Featured Projects</h2>
+					<p>Real-world work that showcases end-to-end thinking, from discovery to delivery.</p>
+				</header>
+				<div class="card-grid">
+					{projects.map((project) => (
+						<article class="card">
+							<h3>{project.title}</h3>
+							<p>{project.description}</p>
+							<ul class="tag-list">
+								{project.tags.map((tag) => (
+									<li>{tag}</li>
+								))}
+							</ul>
+							<a class="card__link" href={project.link}>{project.linkLabel}</a>
+						</article>
+					))}
+				</div>
+			</section> -->
+
+			<section id="skills" class="section section--muted">
+				<header class="section__header">
+					<h2>Skills &amp; Tools</h2>
+					<p>A snapshot of the stack, processes, and practices I lean on to create reliable products.</p>
+				</header>
+				<div class="skill-grid">
+					{skills.map((group) => (
+						<div class="skill-card">
+							<h3>{group.category}</h3>
+							<ul>
+								{group.items.map((item) => (
+									<li>{item}</li>
+								))}
+							</ul>
+						</div>
+					))}
+				</div>
+			</section>
+
+			<section id="about" class="section">
+				<div class="section__header">
+					<h2>About</h2>
+					<p>The spark notes version of what I do and how I like to work.</p>
+				</div>
+				<div class="about">
+					<p>
+						I thrive at the intersection of strategy, design, and engineering. Whether I’m building a
+						greenfield MVP or refining a mature product, I obsess over the end-to-end journey—listening to
+						users, measuring outcomes, and iterating quickly.
+					</p>
+					<p>
+						Recent highlights include shipping a Nuxt app to cloud hosting, deploying a microservice on Google Cloud Run, and mentoring a multi-disciplinary squad through their
+						first launch.
+					</p>
+					<a class="about__link" href="/about/">Read the full story →</a>
+				</div>
+			</section>
+
+			<section id="contact" class="section section--muted">
+				<header class="section__header">
+					<h2>Let’s Build Something</h2>
+					<p>
+						Ready to collaborate or jam on an idea? Reach out directly or connect on your favorite platform.
+					</p>
+				</header>
+				<ul class="contact-list">
+					<li>
+						<strong>Email:</strong>
+						<a href={`mailto:${contact.email}`}>{contact.email}</a>
+					</li>
+					<li>
+						<strong>Location:</strong>
+						<span>{contact.location}</span>
+					</li>
+					<li>
+						<strong>LinkedIn:</strong>
+						<a href={contact.linkedin} target="_blank" rel="noopener noreferrer">Connect</a>
+					</li>
+					<li>
+						<strong>GitHub:</strong>
+						<a href={contact.github} target="_blank" rel="noopener noreferrer">Follow</a>
+					</li>
+				</ul>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	main {
+		max-width: 960px;
+		margin: 0 auto;
+		padding: 4rem 1.5rem;
+		display: flex;
+		flex-direction: column;
+		gap: 5rem;
+	}
+
+	.section {
+		display: grid;
+		gap: 2rem;
+	}
+
+	.section--muted {
+		background: linear-gradient(var(--gray-gradient)) no-repeat;
+		padding: 3rem 2rem;
+		border-radius: 1rem;
+		color: rgb(var(--gray));
+	}
+
+	.section__header {
+		display: grid;
+		gap: 0.75rem;
+	}
+
+	.hero {
+		gap: 3rem;
+	}
+
+	.hero__role {
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		font-size: 0.875rem;
+		color: rgb(var(--gray));
+	}
+
+	.hero__tagline {
+		max-width: 52ch;
+		color: rgb(var(--gray-dark));
+	}
+
+	.hero__ctas {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		margin-top: 1.5rem;
+	}
+
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		padding: 0.75rem 1.5rem;
+		border-radius: 999px;
+		font-weight: 600;
+		text-decoration: none;
+		transition: transform 0.15s ease, box-shadow 0.15s ease;
+	}
+
+	.btn:hover {
+		transform: translateY(-2px);
+	}
+
+	.btn--primary {
+		background: rgb(var(--accent));
+		color: rgb(var(--background));
+	}
+
+	.btn--ghost {
+		border: 1px solid rgb(var(--gray-light));
+		color: inherit;
+	}
+
+	.hero__highlights {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+		gap: 1.5rem;
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.hero__highlights li {
+		display: grid;
+		gap: 0.25rem;
+	}
+
+	.highlight__value {
+		font-size: 2rem;
+		font-weight: 700;
+	}
+
+	.highlight__label {
+		color: rgb(var(--gray-dark));
+		font-size: 0.95rem;
+	}
+
+	.card-grid {
+		display: grid;
+		gap: 1.5rem;
+		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+	}
+
+	.card {
+		border: 1px solid rgb(var(--gray-light));
+		border-radius: 1rem;
+		padding: 1.75rem;
+		display: grid;
+		gap: 1rem;
+		background: rgba(255, 255, 255, 0.6);
+		backdrop-filter: blur(12px);
+	}
+
+	.tag-list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		font-size: 0.875rem;
+		color: rgb(var(--gray));
+	}
+
+	.card__link {
+		font-weight: 600;
+		color: rgb(var(--accent));
+		text-decoration: none;
+	}
+
+	.skill-grid {
+		display: grid;
+		gap: 1.5rem;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	}
+
+	.skill-card {
+		background: rgba(255, 255, 255, 0.4);
+		border-radius: 1rem;
+		padding: 1.5rem;
+		border: 1px solid rgba(255, 255, 255, 0.4);
+		display: grid;
+		gap: 0.75rem;
+	}
+
+	.skill-card ul {
+		margin: 0;
+		padding-left: 1.2rem;
+		display: grid;
+		gap: 0.25rem;
+	}
+
+	.about {
+		display: grid;
+		gap: 1.25rem;
+		max-width: 68ch;
+	}
+
+	.about__link {
+		color: rgb(var(--accent));
+		font-weight: 600;
+		text-decoration: none;
+	}
+
+	.contact-list {
+		list-style: none;
+		display: grid;
+		gap: 1rem;
+		margin: 0;
+		padding: 0;
+	}
+
+	.contact-list a {
+		color: inherit;
+		text-decoration: underline;
+	}
+
+	@media (max-width: 720px) {
+		main {
+			padding: 3rem 1.25rem;
+		}
+
+		.section--muted {
+			padding: 2.5rem 1.5rem;
+		}
+	}
+</style>
