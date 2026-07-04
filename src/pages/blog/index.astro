@@ -7,7 +7,7 @@ import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE, BASE } from '../../consts';
 
-const posts = (await getCollection('blog')).sort(
+const posts = (await getCollection('blog', ({ data }) => !data.archived)).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 ---
@@ -64,7 +64,19 @@ const posts = (await getCollection('blog')).sort(
 			}
 			ul li a:hover h4,
 			ul li a:hover .date {
-				color: rgb(var(--accent));
+				color: var(--accent);
+			}
+			.archive-link {
+				display: inline-block;
+				margin-top: 3rem;
+				font-family: var(--mono);
+				font-size: 0.85rem;
+				letter-spacing: 0.04em;
+				color: var(--text-muted);
+				text-decoration: none;
+			}
+			.archive-link:hover {
+				color: var(--accent);
 			}
 			ul a:hover img {
 				box-shadow: var(--box-shadow);
@@ -107,6 +119,7 @@ const posts = (await getCollection('blog')).sort(
 						))
 					}
 				</ul>
+				<a class="archive-link" href={`${BASE}blog/archive/`}>Archive →</a>
 			</section>
 		</main>
 		<Footer />

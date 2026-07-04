@@ -5,16 +5,46 @@
  */
 
 :root {
-	--accent: #2337ff;
-	--accent-dark: #000d8a;
+	/* Raw palette — RGB triplets kept for rgb()/rgba() call sites in page styles. */
 	--black: 15, 18, 25;
 	--gray: 96, 115, 159;
 	--gray-light: 229, 233, 240;
 	--gray-dark: 34, 41, 57;
-	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
+
+	/* Semantic tokens — preferred API for components and page styles. */
+	--bg: #ffffff;
+	--surface: #f6f8fb;
+	--text: rgb(var(--gray-dark));
+	--text-strong: rgb(var(--black));
+	--text-muted: rgb(var(--gray));
+	--accent: #2337ff;
+	--accent-hover: #000d8a;
+	--accent-dark: #000d8a;
+	--border: rgb(var(--gray-light));
+	--mono: ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
+
+	--gray-gradient: rgba(var(--gray-light), 50%), var(--bg);
 	--box-shadow:
 		0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%), 0 16px 32px
 		rgba(var(--gray), 33%);
+	color-scheme: light;
+}
+
+[data-theme='dark'] {
+	/* Inverted triplets: every rgb(var(--…)) call site flips automatically. */
+	--black: 237, 240, 247;
+	--gray: 148, 163, 199;
+	--gray-light: 42, 49, 66;
+	--gray-dark: 214, 221, 235;
+
+	--bg: #0d1017;
+	--surface: #161b26;
+	--accent: #7c8cff;
+	--accent-hover: #a5b0ff;
+	--accent-dark: #a5b0ff;
+	--box-shadow:
+		0 2px 6px rgba(0, 0, 0, 45%), 0 8px 24px rgba(0, 0, 0, 35%);
+	color-scheme: dark;
 }
 @font-face {
 	font-family: "Atkinson";
@@ -35,11 +65,13 @@ body {
 	margin: 0;
 	padding: 0;
 	text-align: left;
-	background: linear-gradient(var(--gray-gradient)) no-repeat;
+	background-color: var(--bg);
+	background-image: linear-gradient(var(--gray-gradient));
+	background-repeat: no-repeat;
 	background-size: 100% 600px;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
-	color: rgb(var(--gray-dark));
+	color: var(--text);
 	font-size: 20px;
 	line-height: 1.7;
 }
@@ -82,7 +114,7 @@ a {
 	color: var(--accent);
 }
 a:hover {
-	color: var(--accent);
+	color: var(--accent-hover);
 }
 p {
 	margin-bottom: 1em;
@@ -134,6 +166,25 @@ hr {
 	main {
 		padding: 1em;
 	}
+}
+
+.mono-label {
+	font-family: var(--mono);
+	font-size: 0.78rem;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--text-muted);
+}
+
+/* Theme toggle icon visibility — data-theme lives on <html>, so these must be global. */
+.icon-moon {
+	display: none;
+}
+[data-theme='dark'] .icon-sun {
+	display: none;
+}
+[data-theme='dark'] .icon-moon {
+	display: block;
 }
 
 .sr-only {

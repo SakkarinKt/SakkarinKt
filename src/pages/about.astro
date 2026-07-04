@@ -2,14 +2,15 @@
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { SITE_TITLE } from '../consts';
+import { skills } from '../data/skills';
 
 const hero = {
 	title: 'About Me',
-	role: 'Product-focused Software Engineer',
+	role: 'AI/ML Engineer · RL & LLM Systems',
 	intro:
-		"Reinforcement-learning–driven engineer turning research into maintainable, observable products.",
-	availability: 'Currently open to senior AI Engineer and Data Scientist.',
+		'Reinforcement-learning–driven engineer turning research into maintainable, observable products.',
+	availability: 'Open to senior AI Engineer and Data Scientist roles.',
 };
 
 
@@ -18,16 +19,16 @@ const experience = [
 		period: '2023 — Present',
 		title: 'Software Developer · SystemWeb Technologies',
 		points: [
-			'Develop and implement enterprise financial solutions in Asset and Wealth Management using C# and JavaScript.',
-			'Collaborate with cross-functional teams of 5–10 developers across Thailand and Taiwan to deliver scalable and efficient financial applications.',
+			'Built a Portfolio Management System and currently developing a Transfer Agent System for asset & wealth management clients, in C# and JavaScript.',
+			'Collaborate with cross-functional teams of 5–10 developers across Thailand and Taiwan to deliver scalable financial applications.',
 		],
 	},
 	{
-		period: '2020 — 2020',
+		period: '2020',
 		title: 'Data Analyst · Tri Petch IT Solutions',
 		points: [
-			'Designing Machine Learning predictive model for Isuzu Motors’s campaign and managing database and cloud service.',
-			'Collaborated with customer success to close feedback loops and prioritize roadmap.',
+			'Designed a machine-learning predictive model for Isuzu Motors marketing campaigns.',
+			'Managed the supporting databases and cloud services end to end.',
 		],
 	},
 ];
@@ -45,45 +46,52 @@ const education = [
 		period: '2017',
 		title: 'Mahidol University · Thailand',
 		points: [
-			'BSc. in Actuarial Sciences ',
-			'Analytics of financial security systems with Mathematics, Statistics, Finance, and Economics',
+			'BSc. in Actuarial Sciences',
+			'Mathematics, statistics, and financial modeling — the applied-math foundation under my ML work.',
 		],
 	},
 ];
 
 const values = [
-	{ label: 'Integrity first', description: 'Do the right thing—clear communication, honest trade-offs, and privacy/security by design.' },
-	{ label: 'Production-grade quality', description: 'Define “acceptable quality” with measurable criteria: tests, SLOs, code review, and release checklists.' },
-	{ label: 'Client impact', description: 'Start from real problems and outcomes; validate with data and close feedback loops quickly.' },
+	{
+		label: 'Integrity first',
+		description:
+			'I flag risks, costs, and “this won’t work” the moment I see them — plans should be accurate, not comfortable.',
+	},
+	{
+		label: 'Production is the bar',
+		description:
+			'A result counts when it survives code review, tests, and real traffic — I build for the deploy, not the demo.',
+	},
+	{
+		label: 'Impact over output',
+		description:
+			'Start from the user’s problem, attach a metric, and let the data say whether it worked.',
+	},
 ];
 
 const beyondWork = [
-	// {
-	// 	title: 'Community',
-	// 	description:
-	// 		'I co-organize a monthly product meetup that helps builders share wins, challenges, and job leads.',
-	// },
 	{
 		title: 'Learning',
-		description: 'Currently exploring edge-native tooling and experimenting with various optimization for RL',
+		description: 'Currently deep in GPU inference optimization (TensorRT-LLM, Triton) and agentic workflow design.',
 	},
 	{
 		title: 'Outside the Screen',
 		description: 'Catch me practicing BJJ, testing new recipes, or watching new films.',
 	},
 ];
---- 
+---
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={`${SITE_TITLE} · About`} description={`${SITE_DESCRIPTION} — Learn more about the person behind the work.`} />
+		<BaseHead title={`${SITE_TITLE} · About`} description={`About ${SITE_TITLE} — AI/ML engineer working across reinforcement learning, LLM systems, and production financial software.`} />
 	</head>
 	<body>
 		<Header />
 		<main>
 			<section class="section hero">
 				<div class="hero__header">
-					<p class="eyebrow">{hero.role}</p>
+					<p class="eyebrow mono-label">{hero.role}</p>
 					<h1>{hero.title}</h1>
 					<p class="intro">{hero.intro}</p>
 					<p class="availability">{hero.availability}</p>
@@ -98,7 +106,7 @@ const beyondWork = [
 					{experience.map((role) => (
 						<article class="timeline__item">
 							<header>
-								<p class="timeline__period">{role.period}</p>
+								<p class="timeline__period mono-label">{role.period}</p>
 								<h3>{role.title}</h3>
 							</header>
 							<ul>
@@ -119,7 +127,7 @@ const beyondWork = [
 					{education.map((role) => (
 						<article class="timeline__item">
 							<header>
-								<p class="timeline__period">{role.period}</p>
+								<p class="timeline__period mono-label">{role.period}</p>
 								<h3>{role.title}</h3>
 							</header>
 							<ul>
@@ -148,6 +156,24 @@ const beyondWork = [
 
 			<section class="section">
 				<header class="section__header">
+					<h2>Skills &amp; Tools</h2>
+				</header>
+				<div class="skill-rows">
+					{skills.map((group) => (
+						<div class="skill-row">
+							<h3 class="mono-label">{group.category}</h3>
+							<ul class="chip-list">
+								{group.items.map((item) => (
+									<li>{item}</li>
+								))}
+							</ul>
+						</div>
+					))}
+				</div>
+			</section>
+
+			<section class="section">
+				<header class="section__header">
 					<h2>Beyond the Keyboard</h2>
 				</header>
 				<div class="cards">
@@ -166,6 +192,7 @@ const beyondWork = [
 
 <style>
 	main {
+		width: auto;
 		max-width: 900px;
 		margin: 0 auto;
 		padding: 4rem 1.5rem 6rem;
@@ -180,10 +207,10 @@ const beyondWork = [
 	}
 
 	.section--muted {
-		background: linear-gradient(var(--gray-gradient)) no-repeat;
+		background: var(--surface);
 		padding: 3rem 2rem;
 		border-radius: 1rem;
-		color: rgb(var(--gray));
+		border: 1px solid var(--border);
 	}
 
 	.section__header {
@@ -200,22 +227,15 @@ const beyondWork = [
 		gap: 1rem;
 	}
 
-	.eyebrow {
-		text-transform: uppercase;
-		letter-spacing: 0.08em;
-		font-size: 0.85rem;
-		color: rgb(var(--gray));
-	}
-
 	.intro {
 		max-width: 60ch;
 		font-size: 1.1rem;
-		color: rgb(var(--gray-dark));
+		color: var(--text);
 	}
 
 	.availability {
 		font-weight: 600;
-		color: rgb(var(--accent));
+		color: var(--accent);
 	}
 
 	.timeline {
@@ -224,15 +244,10 @@ const beyondWork = [
 	}
 
 	.timeline__item {
-		border-left: 3px solid rgb(var(--accent));
+		border-left: 3px solid var(--accent);
 		padding-left: 1.5rem;
 		display: grid;
 		gap: 1rem;
-	}
-
-	.timeline__period {
-		font-weight: 600;
-		color: rgb(var(--gray));
 	}
 
 	.timeline ul {
@@ -255,6 +270,48 @@ const beyondWork = [
 		gap: 0.5rem;
 	}
 
+	.values h3 {
+		font-size: 1.15em;
+	}
+
+	.values p {
+		margin: 0;
+		color: var(--text);
+	}
+
+	.skill-rows {
+		display: grid;
+		gap: 1.75rem;
+	}
+
+	.skill-row {
+		display: grid;
+		gap: 0.75rem;
+	}
+
+	.skill-row h3 {
+		margin: 0;
+		font-weight: 400;
+	}
+
+	.chip-list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.6rem;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.chip-list li {
+		font-size: 0.9rem;
+		color: var(--text);
+		background: var(--surface);
+		border: 1px solid var(--border);
+		border-radius: 999px;
+		padding: 0.25em 0.9em;
+	}
+
 	.cards {
 		display: grid;
 		gap: 1.5rem;
@@ -262,12 +319,16 @@ const beyondWork = [
 	}
 
 	.card {
-		border: 1px solid rgb(var(--gray-light));
+		border: 1px solid var(--border);
 		border-radius: 1rem;
 		padding: 1.5rem;
 		display: grid;
 		gap: 0.75rem;
-		background: rgba(255, 255, 255, 0.6);
+		background: var(--surface);
+	}
+
+	.card p {
+		margin: 0;
 	}
 
 	@media (max-width: 720px) {

@@ -1,6 +1,7 @@
 ---
 import { SITE_TITLE, BASE } from '../consts';
 import HeaderLink from './HeaderLink.astro';
+import ThemeToggle from './ThemeToggle.astro';
 ---
 
 <header>
@@ -8,9 +9,11 @@ import HeaderLink from './HeaderLink.astro';
 		<h2><a href={BASE}>{SITE_TITLE}</a></h2>
 		<div class="internal-links">
 			<HeaderLink href={BASE}>Home</HeaderLink>
+			<HeaderLink href={`${BASE}#projects`}>Projects</HeaderLink>
 			<HeaderLink href={`${BASE}blog/`}>Blog</HeaderLink>
 			<HeaderLink href={`${BASE}about/`}>About</HeaderLink>
 		</div>
+		<div class="nav-actions">
 		<div class="social-links">
 			<a href="https://www.linkedin.com/in/sakkarin-krarat-bb6958140" target="_blank">
 				<span class="sr-only">Connect on LinkedIn</span>
@@ -30,13 +33,15 @@ import HeaderLink from './HeaderLink.astro';
 				>
 			</a>
 		</div>
+		<ThemeToggle />
+		</div>
 	</nav>
 </header>
 <style>
 	header {
 		margin: 0;
 		padding: 0 1em;
-		background: white;
+		background: var(--bg);
 		box-shadow: 0 2px 8px rgba(var(--black), 5%);
 	}
 	h2 {
@@ -55,13 +60,18 @@ import HeaderLink from './HeaderLink.astro';
 	}
 	nav a {
 		padding: 1em 0.5em;
-		color: var(--black);
+		color: var(--text-strong);
 		border-bottom: 4px solid transparent;
 		text-decoration: none;
 	}
 	nav a.active {
 		text-decoration: none;
 		border-bottom-color: var(--accent);
+	}
+	.nav-actions {
+		display: flex;
+		align-items: center;
+		gap: 0.25em;
 	}
 	.social-links,
 	.social-links a {

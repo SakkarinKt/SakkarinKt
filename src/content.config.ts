@@ -13,6 +13,9 @@ const blog = defineCollection({
 			pubDate: z.coerce.date(),
 			updatedDate: z.coerce.date().optional(),
 			heroImage: image().optional(),
+			// Archived posts stay reachable at their URLs but are hidden
+			// from the main blog listing and the RSS feed.
+			archived: z.boolean().default(false),
 		}),
 });
 
