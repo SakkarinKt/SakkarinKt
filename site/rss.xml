@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+<channel>
+<title>Sakkarin Krarat — this feed moved</title>
+<link>https://sakkarinkt.github.io/</link>
+<description>The feed now lives at https://sakkarinkt.github.io/rss.xml</description>
+<item>
+<title>This feed moved to https://sakkarinkt.github.io/rss.xml</title>
+<link>https://sakkarinkt.github.io/rss.xml</link>
+<guid isPermaLink="false">feed-moved-2026</guid>
+<description>Please update your subscription to https://sakkarinkt.github.io/rss.xml</description>
+</item>
+</channel>
+</rss>

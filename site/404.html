@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Moved · Sakkarin Krarat</title>
+<meta name="robots" content="noindex">
+<script>
+var map = {"/":"/","/about/":"/about/","/blog/":"/blog/","/blog/archive/":"/blog/","/blog/markdown-style-guide/":"/blog/","/blog/third-post/":"/blog/","/blog/first-post/":"/blog/cuda-on-cloud-gpus/","/blog/second-post/":"/blog/claude-opus-4-5-recap/"};
+var resolveLegacy = function resolveLegacy(pathname,map){const base=/^\/sakkarinkt(?=\/|$)/i.exec(pathname);let rest=base?pathname.slice(base[0].length):pathname;if(!rest.startsWith("/"))rest=`/${rest}`;const isFile=/\.[a-z0-9]+$/i.test(rest);const normalized=isFile||rest.endsWith("/")?rest:`${rest}/`;return map[normalized]??normalized};
+location.replace("https://sakkarinkt.github.io" + resolveLegacy(location.pathname, map) + location.search + location.hash);
+</script>
+</head>
+<body style="font-family:system-ui,sans-serif;padding:2rem">
+<p>This site moved to <a href="https://sakkarinkt.github.io/">https://sakkarinkt.github.io/</a>.</p>
+</body>
+</html>

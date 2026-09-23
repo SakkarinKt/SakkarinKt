@@ -1,0 +1,33 @@
+# Serves /SakkarinKt/ — redirect stubs to https://sakkarinkt.github.io/ (the site moved to the user-site repo).
+# Regenerate site/ from the portfolio repo: npx tsx scripts/gen-legacy-stubs.ts --out ../SakkarinKt-profile/site
+name: Deploy redirect stubs
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: site
+          include-hidden-files: true
+      - id: deployment
+        uses: actions/deploy-pages@v5
